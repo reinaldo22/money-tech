@@ -24,4 +24,5 @@ class Expense{
     createdAt: Date;
 }
 
+
 export { Expense };
