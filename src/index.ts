@@ -1,15 +1,17 @@
 import cors from 'cors';
-import routes from './routes/index-router';
+import expenseRoutes  from './routes/expense-Router';
 import 'reflect-metadata';
 import express, { NextFunction, Request, Response } from 'express';
 import AppError from './shared/errors/AppError';
 import './database/connect';
+import morgan from 'morgan';
 
 const app = express();
 
 app.use(cors());
+app.use(morgan('dev'));
 app.use(express.json());
-app.use(routes);
+app.use(expenseRoutes);
 
 app.use(
     (error: Error, request: Request, response: Response, next: NextFunction) => {

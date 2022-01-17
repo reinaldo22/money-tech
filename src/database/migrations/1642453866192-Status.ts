@@ -1,11 +1,11 @@
-import {MigrationInterface, QueryRunner, Table} from "typeorm";
+import { MigrationInterface, QueryRunner, Table } from "typeorm";
 
-export class CreateStatus1642367213262 implements MigrationInterface {
+export class CreateStatus1633480529273 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(new Table({
-            name:'status',
-            columns:[
+            name: "status",
+            columns: [
                 {
                     name: 'id',
                     type: 'integer',
@@ -25,16 +25,17 @@ export class CreateStatus1642367213262 implements MigrationInterface {
                 }
             ]
         }));
+
         await queryRunner
-        .manager
-        .createQueryBuilder()
-        .insert()
-        .into('status')
-        .values([
-            {name: 'PAGO'},
-            {name: 'NÃO PAGO'}
-        ])
-        .execute();
+            .manager
+            .createQueryBuilder()
+            .insert()
+            .into('status')
+            .values([
+                { name: 'ENTRY' },
+                { name: 'OUTPUT' },
+            ])
+            .execute();
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
