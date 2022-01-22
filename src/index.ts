@@ -1,9 +1,10 @@
-import cors from 'cors';
-import expenseRoutes  from './routes/expense-Router';
 import 'reflect-metadata';
-import express, { NextFunction, Request, Response } from 'express';
 import AppError from './shared/errors/AppError';
+import 'express-async-errors';
+import expenseRoutes  from './routes/expense-Router';
+import express, { NextFunction, Request, Response } from 'express';
 import './database/connect';
+import cors from 'cors';
 import morgan from 'morgan';
 
 const app = express();

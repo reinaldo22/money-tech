@@ -23,9 +23,7 @@ export class ExpenseCreate1642370680251 implements MigrationInterface {
                 },
                 {
                     name: 'value',
-                    type: 'decimal',
-                    precision: 10,
-                    scale: 2,
+                    type: 'float', 
                 },
                 {
                     name: 'date',

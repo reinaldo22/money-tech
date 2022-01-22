@@ -14,7 +14,7 @@ class Expense{
     @ManyToOne(() => Status, status => status.id, { cascade: true })
     status: Status;
 
-    @Column()
+    @Column({type: 'real'})
     value: number;
 
     @Column()

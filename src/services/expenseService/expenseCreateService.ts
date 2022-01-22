@@ -7,34 +7,39 @@ import AppError from "../../shared/errors/AppError";
 interface IRequest {
     name: string;
     value: number;
-    date:string;
-  }
+    date: string;
+}
 
-class ExpenseService{
 
-    public async execute({name,  value, date}: IRequest):Promise<Expense>{
+class ExpenseService {
+
+    public async execute({ name, value, date }: IRequest): Promise<Expense> {
         const expenseRepositorie = getCustomRepository(ExpenseRepositorie);
         const statusRepository = getCustomRepository(StatusRepository);
 
 
+        //TODO: PASSAR O STATUS NA CRIAÇÃO DO OBJETO E NÃO POR DEFAULT
         const statusExists = await statusRepository.findOne({
-            where: { id: 9 }
+            where: { id: 1 }
         });
 
-        if(!statusExists){
-            throw new AppError('Esta status não é válido');
+        if (!statusExists) {
+            throw new AppError("Este status não é válido", 404);
         }
 
         const expense = expenseRepositorie.create({
             name,
-            value, 
+            value,
             date,
-            status:statusExists, 
+            status: statusExists,
         });
 
+       
         await expenseRepositorie.save(expense);
 
         return expense;
+
+
     }
 
 
